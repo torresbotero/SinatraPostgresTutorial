@@ -1,0 +1,21 @@
+<h3>All Items</h3>
+<table>
+	<tr>
+		<th>Name</th>
+	    <th>Price</th>
+	    <th>Description</th>
+	    <th>Delete</th>
+	    <th>Update</th>
+	</tr>
+	<% @items.each do |item| %>
+	<tr>
+		<td><%= item.name %></td>
+	    <td><%= item.price %></td>
+	    <td><%= item.description %></td>
+	    <td><a href="/items/delete/<%= item.id %>">Delete</a></td>
+	    <td><a href="/items/update/<%= item.id %>">Update</a></td>
+	</tr>
+	<% end %>
+</table>
+
+<a href="/add_item">Create new Item</a>

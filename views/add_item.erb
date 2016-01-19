@@ -1,0 +1,7 @@
+<h3>Add Items</h3>
+<form action="/items/new" method="POST" id="itemform">
+	<input type="text" name="item[name]"  value="Enter Item Name" required/>
+	<input type="text" name="item[price]" value="Enter Item Price" required/>
+	<input type="submit" value="Submit" />
+</form>
+<textarea name="item[description]" form="itemform" required>Description</textarea>
