@@ -4,7 +4,7 @@ require './config/environments' #database configuration
 require './models/item'
 
 get '/' do
-	@items = Item.all
+	@items = Item.all.order(:name)
 	erb :index
 end
 
