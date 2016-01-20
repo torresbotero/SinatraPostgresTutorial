@@ -2,8 +2,20 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './config/environments' #database configuration
 require './models/item'
+require './workers/hard_worker'
+require 'sidekiq'
+require 'sidekiq/api'
+require 'redis'
+
+#$redis = Redis.new
 
 get '/' do
+=begin
+	stats = Sidekiq::Stats.new
+    @failed = stats.failed
+    @processed = stats.processed
+    @messages = $redis.lrange('sinkiq-example-messages', 0, -1)
+=end
 	@items = Item.all.order(:name)
 	erb :index
 end
@@ -11,6 +23,7 @@ end
 post '/items/new' do
 	@item = Item.new(params[:item])
 	if @item.save
+		CreateWorker.perform_async(@item.attributes)
 		redirect '/'
 	else
 		"Sorry, there was an error!"
@@ -22,7 +35,9 @@ get '/add_item' do
 end
 
 get '/items/delete/:id' do
-  Item.find(params[:id]).delete
+  @item = Item.find(params[:id])
+  @item.delete
+  DeleteWorker.perform_async(@item.attributes)
   redirect '/'
 end
 
@@ -37,6 +52,7 @@ post '/items/update' do
 	@item.price = params[:price]
 	@item.description = params[:description]
 	if @item.save
+		UpdateWorker.perform_async(@item.attributes)
 		redirect '/'
 	else
 		"Sorry, there was an error!"
