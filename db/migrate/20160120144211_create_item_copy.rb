@@ -1,6 +1,6 @@
-class CreateItem < ActiveRecord::Migration
+class CreateItemCopy < ActiveRecord::Migration
   def up
-  	create_table :items do |t|
+  	create_table :item_copies do |t|
   		t.string :name
   		t.string :price
   		t.string :description
