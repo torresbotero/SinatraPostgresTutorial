@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './config/environments' #database configuration
 require './models/item'
+require './models/group'
 require './workers/hard_worker'
 require 'sidekiq'
 require 'sidekiq/api'
@@ -22,6 +23,8 @@ end
 
 post '/items/new' do
 	@item = Item.new(params[:item])
+	@group = Group.find(params[:group_id])
+	@item.group = @group
 	if @item.save
 		CreateWorker.perform_async(@item.attributes)
 		redirect '/'
@@ -30,8 +33,22 @@ post '/items/new' do
 	end
 end
 
+post '/groups/new' do
+	@group = Group.new(params[:group])
+	if @group.save
+		redirect '/'
+	else
+		"Sorry, there was an error!"
+	end
+end
+
 get '/add_item' do
+	@groups = Group.all
 	erb :add_item
+end
+
+get '/add_group' do
+	erb :add_group
 end
 
 get '/items/delete/:id' do
@@ -57,4 +74,10 @@ post '/items/update' do
 	else
 		"Sorry, there was an error!"
 	end
+end
+
+get '/groups/:id' do
+	@group = Group.find(params[:id])
+	@items = @group.items
+	erb :show_group
 end

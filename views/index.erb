@@ -4,6 +4,7 @@
 		<th>Name</th>
 	    <th>Price</th>
 	    <th>Description</th>
+	    <th>Group</th>
 	    <th>Delete</th>
 	    <th>Update</th>
 	</tr>
@@ -12,6 +13,7 @@
 		<td><%= item.name %></td>
 	    <td><%= item.price %></td>
 	    <td><%= item.description %></td>
+	    <td><a href="/groups/<%= item.group.id %>"><%= item.group.name %></a></td>
 	    <td><a href="/items/delete/<%= item.id %>">Delete</a></td>
 	    <td><a href="/items/update/<%= item.id %>">Update</a></td>
 	</tr>
@@ -19,3 +21,4 @@
 </table>
 
 <a href="/add_item">Create new Item</a>
+<a href="/add_group">Create new Group</a>

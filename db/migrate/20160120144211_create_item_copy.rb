@@ -1,5 +1,5 @@
 class CreateItemCopy < ActiveRecord::Migration
-  def up
+  def change
   	create_table :item_copies do |t|
   		t.string :name
   		t.string :price
