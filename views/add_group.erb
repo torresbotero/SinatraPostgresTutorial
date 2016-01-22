@@ -1,6 +1,13 @@
 <h3>Add Groups</h3>
 <form action="/groups/new" method="POST" id="groupform">
-	<input type="text" name="group[name]"  value="Enter Group Name" required/>
-	<input type="submit" value="Submit" />
+	<div class="form-group">
+		<label for="groupNameInput">Group Name</label>
+		<input type="text" id="groupNameInput" name="group[name]" class="form-control" required/>
+	</div>
+
+	<div class="form-group">
+		<label for="groupNameInput">Group Description</label>
+		<textarea id="" name="group[description]" form="groupform" class="form-control" required></textarea>
+	</div>
+	<button type="submit" class="btn btn-default">Create</button>
 </form>
-<textarea name="group[description]" form="groupform" required>Description</textarea>

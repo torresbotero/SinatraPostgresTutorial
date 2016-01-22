@@ -1,0 +1,4 @@
+Items:
+[{"id":12,"name":"gfhg","price":"6545","description":"gfdhsgh","group_id":1,"created_at":"2016-01-21T22:26:36.769Z","updated_at":"2016-01-21T22:26:36.769Z"},{"id":13,"name":"gfhsghg","price":"84515","description":"gdfh","group_id":2,"created_at":"2016-01-21T22:26:48.671Z","updated_at":"2016-01-21T22:26:48.671Z"},{"id":14,"name":"dgfhsgh","price":"85451","description":"ghssf","group_id":3,"created_at":"2016-01-21T22:26:57.306Z","updated_at":"2016-01-21T22:26:57.306Z"}]
+Groups:
+[]

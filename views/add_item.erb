@@ -1,14 +1,28 @@
 <h3>Add Items</h3>
 <form action="/items/new" method="POST" id="itemform">
-	<input type="text" name="item[name]"  value="Enter Item Name" required/>
-	<input type="text" name="item[price]" value="Enter Item Price" required/>
-	<input type="submit" value="Submit" />
+	<div class="form-group">
+		<label for="itemNameInput">Item Name</label>
+		<input type="text" id="itemNameInput" name="item[name]" class="form-control" required/>
+	</div>
+
+	<div class="form-group">
+		<label for="itemPriceInput">Item Price</label>
+		<input type="text" id="itemPriceInput" name="item[price]" class="form-control" required/>
+	</div>
+
+	<div class="form-group">
+		<label for="itemGroupSelect">Group</label>
+		<select id="itemGroupSelect" class="form-control" name="group_id" form="itemform" required>
+		  	<% @groups.each do |group| %>
+		  	<option value="<%= group.id %>"><%= group.name %></option>
+		  	<% end %>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="itemDescriptionTxtArea">Item Description</label>
+		<textarea id="itemDescriptionTxtArea" class="form-control" name="item[description]" form="itemform" required></textarea>
+	</div>
+
+	<button type="submit" class="btn btn-default">Create</button>
 </form>
-Group:
-<select name="group_id" form="itemform" required>
-  <% @groups.each do |group| %>
-  <option value="<%= group.id %>"><%= group.name %></option>
-  <% end %>
-</select>
-<br />
-<textarea name="item[description]" form="itemform" required>Description</textarea>

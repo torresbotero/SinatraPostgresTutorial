@@ -14,9 +14,9 @@ class CreateWorker
   	@item_copy.description = item["description"]
     if @item_copy.save
 		"Item copied"
-	else
-		"Sorry, there was an error!"
-	end
+  	else
+  		"Sorry, there was an error!"
+  	end
   end
 end
 
@@ -29,9 +29,9 @@ class UpdateWorker
   	@item_copy.description = item["description"]
     if @item_copy.save
 		"Item copy updated"
-	else
-		"Sorry, there was an error!"
-	end
+  	else
+  		"Sorry, there was an error!"
+  	end
   end
 end
 

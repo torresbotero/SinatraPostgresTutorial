@@ -60,6 +60,7 @@ end
 
 get '/items/update/:id' do
   @item = Item.find(params[:id])
+  @groups = Group.all
   erb :update_item
 end
 
@@ -68,6 +69,8 @@ post '/items/update' do
 	@item.name = params[:name]
 	@item.price = params[:price]
 	@item.description = params[:description]
+	@group = Group.find(params[:group_id])
+	@item.group = @group
 	if @item.save
 		UpdateWorker.perform_async(@item.attributes)
 		redirect '/'
