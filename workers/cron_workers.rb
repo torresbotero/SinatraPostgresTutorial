@@ -1,3 +1,4 @@
+=begin
 require 'sidekiq'
 require 'sidekiq-cron'
 #require './config/environments' #database configuration
@@ -36,3 +37,4 @@ if job.valid?
 else
   puts job.errors
 end
+=end
